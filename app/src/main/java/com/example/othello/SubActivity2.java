@@ -114,14 +114,13 @@ public class SubActivity2 extends AppCompatActivity {
             }
         });
 
-
     }
 
+    Othello othello = new Othello();
     private View.OnClickListener buttonClick = new View.OnClickListener() {
 
         String pc1 = "O";
         String pc2 = "X";
-
         int tern = 0;
         public void onClick(View view) {
             Button b = findViewById(view.getId());
@@ -140,14 +139,14 @@ public class SubActivity2 extends AppCompatActivity {
                 aite = pc1;
             }
 
-            int can = Othello.returnOthello(tate, yoko, jibun, aite, button);
+            int can = othello.returnOthello(tate, yoko, jibun, aite, button);
             if (can > 0) {
                 b.setText(jibun);
-                Othello.syncOthello(button,kuro,shiro);
+                othello.syncOthello(button,kuro,shiro);
                 tern++;
             }
-            int s = Othello.countOthello("O",button);
-            int k= Othello.countOthello("X",button);
+            int s = othello.countOthello("O",button);
+            int k= othello.countOthello("X",button);
             tokutenShiro.setText(String.valueOf(s));
             tokutenKuro.setText(String.valueOf(k));
         }

@@ -118,7 +118,7 @@ public class SubActivity extends AppCompatActivity {
 
 
     }
-
+    Othello othello = new Othello();
     private View.OnClickListener buttonClick = new View.OnClickListener() {
         /*@Override
         public void onClick(View view) {
@@ -141,8 +141,7 @@ public class SubActivity extends AppCompatActivity {
             }
         }*/
 
-        public void onClick(View view) {
-            String pc1 = "O";
+        public void onClick(View view) { String pc1 = "O";
             String pc2 = "X";
             Button b = findViewById(view.getId());
             int tag  = (int) b.getTag();
@@ -150,22 +149,22 @@ public class SubActivity extends AppCompatActivity {
             int yoko = tag % 10;//何列目か
             String jibun = pc1;
             String aite = pc2;
-            int can = Othello.returnOthello(tate, yoko, jibun, aite, button);
+            int can = othello.returnOthello(tate, yoko, jibun, aite, button);
             if (can > 0) {
                 b.setText(jibun);
-                Othello.syncOthello(button,kuro,shiro);
+                othello.syncOthello(button,kuro,shiro);
                 new Handler().postDelayed(new Runnable() {
                     // Runnable型のインスタンス化と定義
                     @Override
                     public void run() {
 
                         // 遅らせて実行したい処理
-                        Othello.tokutenMax1(button,kuro,shiro,tokutenKuro,tokutenShiro);
+                        othello.tokutenMax1(button,kuro,shiro,tokutenKuro,tokutenShiro);
                     }
                 }, 500); // 遅らせたい時間(ミリ秒) 3000ミリ秒 -> 3秒
             }
-            int s = Othello.countOthello("O",button);
-            int k= Othello.countOthello("X",button);
+            int s = othello.countOthello("O",button);
+            int k= othello.countOthello("X",button);
             tokutenShiro.setText(String.valueOf(s));
             tokutenKuro.setText(String.valueOf(k));
 
